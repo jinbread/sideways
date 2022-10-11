@@ -4,9 +4,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [content, setContent] = React.useState(['Write Anything'])
+  const [content, setContent] = React.useState([`Write 'help or about'`])
   const [command, setCommand] = React.useState('')
-  
+  const aboutJinbread = "Jinjae Lee is a senior product designer / product design lead at flex, a HR SaaS startup based in Seoul. He worked at Hyundai Motor Group, Above Agency as an interaction designer."
+  const helpText = ["-- about - summary of jinbread", "-- help - command list"]
 
   return (
     <div className={styles.container}>
@@ -27,7 +28,14 @@ export default function Home() {
 
         <form className={styles.form}
           onSubmit={(e) => {
-          setContent([...content, command])
+            if(command == "about") {
+                setContent([...content, aboutJinbread])
+            } else if(command == "help") {
+              setContent([...content, ...helpText])
+            } else {
+              setContent([...content, `'${command}' command not found`])
+            }
+
           // console.log(content)
           setCommand("")
           e.preventDefault();
