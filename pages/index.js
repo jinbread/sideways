@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [content, setContent] = React.useState('Test')
+  const [content, setContent] = React.useState(['Write Anything'])
   const [command, setCommand] = React.useState('')
   
 
@@ -25,17 +25,24 @@ export default function Home() {
         </p>
         <p className={styles.description}>Interaction designer by day, <br/> creative coder and writer by night.</p>
 
-        <form onSubmit={(e) => {
-          setContent(content +" "+ command)
+        <form className={styles.form}
+          onSubmit={(e) => {
+          setContent([...content, command])
+          // console.log(content)
           setCommand("")
           e.preventDefault();
+          
         }}>
 
-          <input value={command} onChange={(e) => setCommand(e.target.value)} />
-          <button type="submit">제출</button>
+          <input className={styles.input} value={command} onChange={(e) => setCommand(e.target.value)} />
+          <button className={styles.button} type="submit">Enter</button>
         </form>
 
-        <div className={styles.terminal} >{content}</div>
+        <div>
+          {content.map( (item, i) => {
+            return <div className={styles.terminal} key={i}>{item}</div>
+          })}
+        </div>
 
       </main>
 
