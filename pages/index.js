@@ -27,6 +27,7 @@ export default function Home() {
 
         <form onSubmit={(e) => {
           setContent(content +" "+ command)
+          setCommand("")
           e.preventDefault();
         }}>
 
