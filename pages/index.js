@@ -7,7 +7,8 @@ export default function Home() {
   const [content, setContent] = React.useState([`Write 'help or about'`])
   const [command, setCommand] = React.useState('')
   const aboutJinbread = "Jinjae Lee is a senior product designer / product design lead at flex, a HR SaaS startup based in Seoul. He worked at Hyundai Motor Group, Above Agency as an interaction designer."
-  const helpText = ["-- about - summary of jinbread", "-- help - command list"]
+  const helpText = ["→ about - summary of jinbread", "→ help - command list"]
+  const [path, setPath] = React.useState('~')
 
   return (
     <div className={styles.container}>
@@ -18,7 +19,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        
+
+
 
         <p className={styles.title}>
           Jinbread works{' '}
@@ -26,14 +28,25 @@ export default function Home() {
         </p>
         <p className={styles.description}>Interaction designer by day, <br/> creative coder and writer by night.</p>
 
+<div>
+
+        <div>
+          {content.map( (item, i) => {
+            return <div className={styles.terminal} key={i}>{item}</div>
+          })}
+        </div>
+
         <form className={styles.form}
           onSubmit={(e) => {
             if(command == "about") {
-                setContent([...content, aboutJinbread])
+                setContent([...content, "→  " + path + " "+ command, aboutJinbread])
             } else if(command == "help") {
-              setContent([...content, ...helpText])
+              setContent([...content, "→  " + path + " "+ command, ...helpText])
+            } else if(command.split(' ')[0] == "cd") {
+              setContent([...content, "→  " + path + " "+ command])
+              setPath(command.split(' ')[1] + ' ')
             } else {
-              setContent([...content, `'${command}' command not found`])
+              setContent([...content, `Command not found: ${command}`])
             }
 
           // console.log(content)
@@ -42,14 +55,9 @@ export default function Home() {
           
         }}>
 
-          <input className={styles.input} value={command} onChange={(e) => setCommand(e.target.value)} />
-          <button className={styles.button} type="submit">Enter</button>
+          <div className={styles.terminal} style={{display: "inline-block", color: "cyan", marginRight: 4, marginTop: 8}} >{"→  "}{path}{" "}</div> <input className={styles.input} value={command} onChange={(e) => setCommand(e.target.value)} />
+          {/* <button className={styles.button} type="submit">Enter</button> */}
         </form>
-
-        <div>
-          {content.map( (item, i) => {
-            return <div className={styles.terminal} key={i}>{item}</div>
-          })}
         </div>
 
       </main>

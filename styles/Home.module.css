@@ -22,13 +22,24 @@
 .terminal {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
   font-size: 14px;
-  color: #aaa;
-  line-height: 2;
+  /* color: #aaa; */
+  opacity: .8;
+  line-height: 1.6;
   /* margin: 0; */
 }
 
 .input {
-  font-size: 16px;
+  font-size: 14px;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  border: none;
+  border-bottom: 1px solid cyan;
+  background: none;
+  padding: 4px;
+
+}
+
+.input:foucs {
+  outline: none;
 }
 
 .button {
