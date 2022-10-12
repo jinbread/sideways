@@ -4,10 +4,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [content, setContent] = React.useState([`Write 'help or about'`])
+  const [content, setContent] = React.useState([`Hej hej, write 'help' to navigate ⚑`])
   const [command, setCommand] = React.useState('')
   const aboutJinbread = "Jinjae Lee is a senior product designer / product design lead at flex, a HR SaaS startup based in Seoul. He worked at Hyundai Motor Group, Above Agency as an interaction designer."
-  const helpText = ["→ about - summary of jinbread", "→ help - command list"]
+  const helpText = ["→ about - summary of jinjae", "→ help - command list", "→ cd location - move to specific folder"]
   const [path, setPath] = React.useState('~')
 
   return (
@@ -46,7 +46,7 @@ export default function Home() {
               setContent([...content, "→  " + path + " "+ command])
               setPath(command.split(' ')[1] + ' ')
             } else {
-              setContent([...content, `Command not found: ${command}`])
+              setContent([...content, `command not found: ${command}`])
             }
 
           // console.log(content)
